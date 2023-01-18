@@ -1,0 +1,13 @@
+
+<div *ngFor="let product of basketProducts" class="border border-primary m-1">
+        <p>Product: {{product.name}}</p>
+        <p>Price: {{product.price}}</p>
+        <b>In cart: {{product.amount}}</b>
+        <button (click)="removeFromCart(product)" class="btn btn-danger">Remove</button>
+</div>
+
+<button (click)="submitOrder()" class="btn btn-primary">Place order</button>
+
+<div id="alert" class="container">
+
+</div>

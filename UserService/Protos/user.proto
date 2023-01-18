@@ -1,0 +1,34 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "UserProto";
+
+package UserProto;
+
+service UserProtoService {
+	rpc ValidateOrderBalance (OrderBalanceValidationRequest) returns (OrderBalancetValidationResult);
+	rpc ReturnAccountPageResponse (AccountPageUserServiceRequestGrpc) returns (AccountPageUserServiceResponseGrpc);
+}
+
+
+message OrderBalanceValidationRequest {
+	int64 orderId=1;
+	string userId=2;
+	double price=3;
+}
+
+message OrderBalancetValidationResult {
+	int64 orderId=1;
+	bool result=2;
+}
+
+message AccountPageUserServiceRequestGrpc {
+	string userId=1;
+}
+
+message AccountPageUserServiceResponseGrpc {
+	string username=1;
+	string email=2;
+	double balance=3;
+	repeated int64 orders=4;
+}
+

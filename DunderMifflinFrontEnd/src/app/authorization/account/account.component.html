@@ -1,0 +1,19 @@
+<div>
+    <p>{{user.username}}</p>
+    <p>{{user.email}}</p>
+</div>
+
+<div>
+    <p>Here are your current orders: </p>
+    <ol *ngFor="let order of user.orders">
+        <p>Order ID: {{order.orderId}}</p>
+        <p>Status: {{order.status}}</p>
+        <li>
+            <div *ngFor="let product of order.orderItems" class="border border-primary">
+                <p>Product name: {{product.name}}</p>
+                <p>Amount ordered: {{product.amount}}</p>
+            </div>
+        </li>
+    </ol>
+</div>
+

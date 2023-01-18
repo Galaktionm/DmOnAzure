@@ -1,0 +1,59 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "OrderProto";
+
+package OrderProto;
+
+service OrderProtoService {
+	rpc GetOrder(OrderRequestGrpc) returns (OrderGrpc);
+	rpc GetOrderByUserId(OrderRequestGrpc) returns (OrderByUserIdResponseGrpc);
+	rpc SaveOrder(SaveOrderRequestGrpc) returns (ResultResponseGrpc);
+	rpc DeleteOrder(DeleteOrderRequestGrpc) returns (DeleteOrderResponseGrpc);
+}
+
+
+message ResultResponseGrpc {
+	string message=1;
+	bool result=2;
+}
+
+
+message OrderRequestGrpc {
+	int64 orderId=1;
+	string userId=2;
+}
+
+message SaveOrderRequestGrpc {
+	string userId=1;
+	repeated OrderItemGrpc items=4;
+}
+
+message OrderByUserIdResponseGrpc {
+	repeated OrderGrpc orders=1;
+}
+
+message OrderGrpc {
+	int64 orderId=1;
+	string userId=2;
+	string orderStatus=3;
+	repeated OrderItemGrpc items=4;
+}
+
+message OrderItemGrpc {
+	string itemId=1;
+	string itemName=2;
+	double itemPrice=3;
+	int32 amount=4;
+}
+
+message DeleteOrderRequestGrpc {
+	string orderId=1;
+	string userId=2;
+}
+
+message DeleteOrderResponseGrpc {
+	bool result=1;
+}
+
+
+

@@ -1,0 +1,26 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "ProductProto";
+
+package ProductProto;
+
+service ProductProtoService {
+	rpc ValidateOrderProducts (OrderProductValidationRequest) returns (OrderProductValidationResult);
+}
+
+
+message OrderProductValidationRequest {
+	int64 orderId=1;
+	repeated OrderedItemGrpc items=2;
+}
+
+message OrderedItemGrpc {
+	string itemId=1;
+	int32 amount=2;
+}
+
+message OrderProductValidationResult {
+	int64 orderId=1;
+	bool result=2;
+}
+

@@ -1,0 +1,48 @@
+<form (ngSubmit)="searchProduct()" [formGroup]="searchForm" class="container border border-danger">
+
+    <label for="query">Search product:</label>
+    <input type="text" formControlName="query" name="query" id="query" class="form-control">
+
+    <button type="submit" class="btn btn-danger">Search</button>
+</form>
+
+<div *ngIf="searchedProducts">
+    <div *ngFor="let product of searchedProducts">
+    <div class="border border-primary m-1">
+        <p>Name: {{product.name}}</p>
+        <p>Price: {{product.price}}</p>           
+        <p>Manufacturer: {{product.manufacturer}}</p>
+        <p>Info: {{product.additionalInfo}}</p>
+        <form method="POST" [formGroup]="amountForm" (ngSubmit)="addToCart(product)">
+            <label for="amount" class="form-label">Amount: </label>
+            <input type="number" formControlName="amount" id="amount" class="form-group">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+</div>
+
+
+<div *ngIf="!searchedProducts">
+<div *ngFor="let product of products">
+    <div class="border border-primary m-1">
+        <p>Name: {{product.name}}</p>
+        <p>Price: {{product.price}}</p>           
+        <p>Manufacturer: {{product.manufacturer}}</p>
+        <p>Info: {{product.additionalInfo}}</p>
+        <form method="POST" [formGroup]="amountForm" (ngSubmit)="addToCart(product)">
+            <label for="amount" class="form-label">Amount: </label>
+            <input type="number" formControlName="amount" id="amount" class="form-group">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+</div>
+
+<!--
+<form method="POST" (ngSubmit)="addToCart(product)">
+            <label for="amount" class="form-label">Amount: </label>
+            <input type="number" [(ngModel)]="amount" id="amount" class="form-group">
+            <button type="submit">Submit</button>
+        </form>
+-->
